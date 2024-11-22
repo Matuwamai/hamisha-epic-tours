@@ -5,10 +5,18 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import "./index.css"; // TailwindCSS styling
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
-);
+// Make sure to check if the root element exists before rendering.
+const rootElement = document.getElementById("root");
+
+if (rootElement) {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      {/* BrowserRouter with basename to account for base path in Vite configuration */}
+      <BrowserRouter basename="/hamisha-epic-tours/">
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
+} else {
+  console.error("Root element not found. Unable to mount the React app.");
+}

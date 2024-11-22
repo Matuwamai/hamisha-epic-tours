@@ -1,7 +1,7 @@
 // src/pages/ConfirmationPage.tsx
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import {  doc, getDoc } from "firebase/firestore";
 import { firestore } from "../services/firebase";
 
 const ConfirmationPage = () => {

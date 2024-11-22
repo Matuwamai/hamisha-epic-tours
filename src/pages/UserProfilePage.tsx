@@ -1,5 +1,5 @@
 // src/pages/UserProfilePage.tsx
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../services/firebase";
 import { onAuthStateChanged, updateEmail, updatePassword } from "firebase/auth";

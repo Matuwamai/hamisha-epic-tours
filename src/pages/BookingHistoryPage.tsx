@@ -1,5 +1,5 @@
 // src/pages/BookingHistoryPage.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { firestore } from "../services/firebase"; // Import firestore instead of db
 import { collection, getDocs, query, where } from "firebase/firestore"; // Firebase Firestore functions
 

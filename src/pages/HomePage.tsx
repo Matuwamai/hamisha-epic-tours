@@ -1,5 +1,4 @@
 // src/pages/HomePage.tsx
-import React from "react";
 import { Link } from "react-router-dom"; // For navigation between pages
 import { useState } from "react";
 

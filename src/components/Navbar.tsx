@@ -1,79 +1,95 @@
-// src/components/Navbar.tsx
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../services/firebase";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+// components/Navbar.tsx
+import { useState } from "react";
 
-const Navbar = () => {
-  const [user, setUser] = useState<any>(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  const handleLogout = async () => {
-    await signOut(auth);
-    setUser(null);
-    navigate("/login");  // Redirect to login page after logout
-  };
+const Navbar: React.FC = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <nav className="bg-[#105A89] text-white py-4 shadow-md">
-      <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
-        {/* Logo / Home Link */}
-        <Link to="/" className="text-2xl font-bold">
-          Hamisha Epic Tours
-        </Link>
+    <nav className="bg-white shadow-md">
+      <div className="container mx-auto px-4 flex justify-between items-center py-4">
+        {/* Logo */}
+        <a href="/" className="text-2xl font-bold text-gray-800 hover:text-blue-600">BrandLogo</a>
 
-        {/* Navigation Links */}
-        <div className="flex items-center space-x-4">
-          {user ? (
-            <>
-              {/* Profile Link */}
-              <Link
-                to="/profile"
-                className="bg-[#C56D00] text-white py-2 px-4 rounded hover:bg-opacity-90"
+        {/* Main Navigation */}
+        <ul className="hidden md:flex space-x-6">
+          <li>
+            <a href="/" className="text-gray-700 hover:text-blue-500">Home</a>
+          </li>
+          <li>
+            <a href="/services" className="text-gray-700 hover:text-blue-500">Services</a>
+          </li>
+          <li className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="text-gray-700 hover:text-blue-500 flex items-center"
+            >
+              More
+              <svg
+                className="ml-1 w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Profile
-              </Link>
-              {/* Bookings Link */}
-              <Link
-                to="/bookings"
-                className="bg-[#C56D00] text-white py-2 px-4 rounded hover:bg-opacity-90"
-              >
-                Bookings
-              </Link>
-              {/* Logout Button */}
-              <button
-                onClick={handleLogout}
-                className="bg-[#C56D00] text-white py-2 px-4 rounded hover:bg-opacity-90"
-              >
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              {/* Login Link */}
-              <Link
-                to="/login"
-                className="bg-[#C56D00] text-white py-2 px-4 rounded hover:bg-opacity-90"
-              >
-                Login
-              </Link>
-              {/* Sign Up Link */}
-              <Link
-                to="/signup"
-                className="bg-[#C56D00] text-white py-2 px-4 rounded hover:bg-opacity-90"
-              >
-                Sign Up
-              </Link>
-            </>
-          )}
-        </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            {isDropdownOpen && (
+              <ul className="absolute bg-white border rounded shadow-md mt-2 w-40">
+                <li>
+                  <a
+                    href="/about"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/blog"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            )}
+          </li>
+          <li>
+            <a href="/contact" className="text-gray-700 hover:text-blue-500">Contact</a>
+          </li>
+        </ul>
+
+        {/* Mobile Menu */}
+        <button className="md:hidden text-gray-700 focus:outline-none">
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
       </div>
     </nav>
   );
