@@ -26,7 +26,7 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
+    <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-16">
       <h2 className="text-2xl font-semibold text-center">Sign Up</h2>
 
       <div className="mt-4">

@@ -8,6 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import BookingHistoryPage from "./pages/BookingHistoryPage";
+import AboutUs from "./components/AboutUs";
+import ChatPage from "./components/chats";
+import Destinations from "./components/Destinations";
 
 const App = () => {
   return (
@@ -21,6 +24,9 @@ const App = () => {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/profile" element={<UserProfilePage />} />
           <Route path="/bookings" element={<BookingHistoryPage />} />
+          <Route path="/aboutus" element={<AboutUs/>} />
+          <Route path="/chat" element={<ChatPage/>} />
+          <Route path="/destinations" element={<Destinations/>} />
         </Routes>
       </MainLayout>
     </div>
